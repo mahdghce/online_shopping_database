@@ -1,0 +1,106 @@
+
+--
+-- Table structure for table `customer`
+--
+
+DROP TABLE IF EXISTS `customer`;
+CREATE TABLE `customer` (
+  `ID` int(20) NOT NULL,
+  `Email` varchar(25) DEFAULT NULL,
+  `Password` varchar(25) DEFAULT NULL,
+  `FirstName` varchar(25) DEFAULT NULL,
+  `LastName` varchar(25) DEFAULT NULL,
+  `Sex` enum('Male','Female') DEFAULT NULL,
+  `Credit` int(20) DEFAULT NULL,
+  `Cellphone` int(20) DEFAULT NULL,
+  `Address` varchar(25) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+--
+-- Table structure for table `manager`
+--
+
+DROP TABLE IF EXISTS `manager`;
+CREATE TABLE `manager` (
+  `ID` int(25) NOT NULL,
+  `Email` varchar(25) DEFAULT NULL,
+  `Password` varchar(25) DEFAULT NULL,
+  `FirstName` varchar(25) DEFAULT NULL,
+  `LastName` varchar(25) DEFAULT NULL,
+  `Sex` enum('Male','Female') DEFAULT NULL,
+  `Cellphone` int(25) DEFAULT NULL,
+  `Address` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+--
+-- Table structure for table `vendor`
+--
+
+DROP TABLE IF EXISTS `vendor`;
+CREATE TABLE `vendor` (
+  `ID` int(25) NOT NULL,
+  `Title` varchar(25) DEFAULT NULL,
+  `City` varchar(25) DEFAULT NULL,
+  `ManagerID` int(25) DEFAULT NULL,
+  `Address` varchar(50) DEFAULT NULL,
+  `Phone` int(25) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+--
+-- Table structure for table `orders`
+--
+
+DROP TABLE IF EXISTS `orders`;
+CREATE TABLE `orders` (
+  `ID` int(25) NOT NULL,
+  `VendorID` int(25) DEFAULT NULL,
+  `CustomerID` int(25) DEFAULT NULL,
+  `Status` enum('Submitted','OnTheWay','Delivered','') DEFAULT NULL,
+  `PaymentType` enum('Credit','BankPortal','','') DEFAULT NULL,
+  `CreatedAt` date DEFAULT NULL,
+  `DeliveryAddress` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+--
+-- Table structure for table `product`
+--
+
+DROP TABLE IF EXISTS `product`;
+CREATE TABLE `product` (
+  `ID` int(25) NOT NULL,
+  `Tite` varchar(25) DEFAULT NULL,
+  `Price` int(25) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+--
+-- Table structure for table `vendorproduct`
+--
+
+DROP TABLE IF EXISTS `vendorproduct`;
+CREATE TABLE `vendorproduct` (
+  `VendorID` int(11) DEFAULT NULL,
+  `ProductID` int(11) DEFAULT NULL,
+  `Amount` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+--
+-- Table structure for table `orderproduct`
+--
+
+DROP TABLE IF EXISTS `orderproduct`;
+CREATE TABLE `orderproduct` (
+  `OrderID` int(11) DEFAULT NULL,
+  `ProductID` int(11) DEFAULT NULL,
+  `Amount` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
